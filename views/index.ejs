@@ -1,70 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css">
   <title>Disease Predictor</title>
 </head>
+
 <body>
   <div class="container">
     <h1>Disease Prediction System</h1>
-    <form action="/predict" method="POST">
-      <label for="symptoms">Enter symptoms (comma-separated):</label>
-      <input type="text" name="symptoms" id="symptoms" placeholder="e.g. headache, fatigue, cough" required>
-      <button type="submit">Predict</button>
-    </form>
+    <% if (!locals.predicted_disease){ %>
+      <h3 class="select-head">Select your symptoms:</h3>
+      <form action="/predict" method="POST">
 
-    <% if (locals.predicted_disease) { %>
-      <div class="section">
-        <h2>Predicted Disease:</h2>
-        <p><strong><%= predicted_disease %></strong></p>
-      </div>
+        <% symptoms.forEach(symptom=> { %>
+          <input type="checkbox" name="symptoms" value="<%= symptom %>" id="<%= symptom %>" class="hidden-checkbox">
+          <label class="symptom-button" for="<%= symptom %>">
+            <%= symptom.replace(/_/g, ' ' ).replace(/\b\w/g, c=> c.toUpperCase()) %>
+          </label>
+          <% }) %>
 
-      <div class="section">
-        <h3>Description:</h3>
-        <p><%= dis_des %></p>
-      </div>
+            <br>
+            <button type="submit" class="predict-btn">Predict</button>
+      </form>
+      <% } %>
 
-      <div class="section">
-        <h3>Precautions:</h3>
-        <ul>
-          <% my_precautions.forEach(p => { %>
-            <li><%= p %></li>
-          <% }); %>
-        </ul>
-      </div>
+        <% if (locals.predicted_disease) { %>
 
-      <div class="section">
-        <h3>Medications:</h3>
-        <ul>
-          <% medications.forEach(med => { %>
-            <li><%= med %></li>
-          <% }); %>
-        </ul>
-      </div>
+          <div class="section">
+            <h2>Predicted Disease: 
+              <strong><%= predicted_disease %></strong>
+            </h2>
+          </div>
 
-      <div class="section">
-        <h3>Recommended Diet:</h3>
-        <ul>
-          <% my_diet.forEach(diet => { %>
-            <li><%= diet %></li>
-          <% }); %>
-        </ul>
-      </div>
+          <div class="section">
+            <h3>Description:</h3>
+            <p>
+              <%= dis_des %>
+            </p>
+          </div>
+          <div class="sections-wrapper">
 
-      <div class="section">
-        <h3>Workout Suggestions:</h3>
-        <ul>
-          <% workout.forEach(wrk => { %>
-            <li><%= wrk %></li>
-          <% }); %>
-        </ul>
-      </div>
+            <div class="section">
+              <h3>Precautions:</h3>
+              <ul>
+                <% my_precautions.forEach(p=> { %>
+                  <li>
+                    <%= p %>
+                  </li>
+                  <% }); %>
+              </ul>
+            </div>
 
-    <% } else if (locals.message) { %>
-      <div class="message"><%= message %></div>
-    <% } %>
+            <div class="section">
+              <h3>Medications:</h3>
+              <ul>
+                <% medications.forEach(med=> { %>
+                  <li>
+                    <%= med %>
+                  </li>
+                  <% }); %>
+              </ul>
+            </div>
+
+            <div class="section">
+              <h3>Recommended Diet:</h3>
+              <ul>
+                <% my_diet.forEach(diet=> { %>
+                  <li>
+                    <%= diet %>
+                  </li>
+                  <% }); %>
+              </ul>
+            </div>
+
+            <div class="section">
+              <h3>Workout Suggestions:</h3>
+              <ul>
+                <% workout.forEach(wrk=> { %>
+                  <li>
+                    <%= wrk %>
+                  </li>
+                  <% }); %>
+              </ul>
+            </div>
+
+            <div>
+              <button class="back-button">
+                <a href="/">Back to Home</a>
+              </button>
+            </div>
+          </div>
+          <% } else if (locals.message) { %>
+            <div class="message">
+              <%= message %>
+            </div>
+            <% } %>
   </div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

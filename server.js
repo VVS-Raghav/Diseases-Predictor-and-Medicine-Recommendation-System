@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { PythonShell } = require("python-shell");
+const Symptoms = require('./symptoms.json'); 
 const path = require("path");
 
 const app = express();
@@ -10,23 +11,30 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index",{symptoms:Object.keys(Symptoms)});
 });
 
 app.post("/predict", (req, res) => {
-  const symptoms = req.body.symptoms;
+  let symptoms = req.body.symptoms;
 
-  if (!symptoms || symptoms === "Symptoms") {
+  if (!symptoms || (Array.isArray(symptoms) && symptoms.length === 0)) {
     return res.render("index", {
-      message: "Please either write symptoms or you have written misspelled symptoms",
+      message: "Please select at least one symptom.",
+      symptoms: Object.keys(Symptoms)
     });
   }
+
+  if (!Array.isArray(symptoms)) {
+    symptoms = [symptoms];
+  }
+
+  const symptomsArg = symptoms.join(",");
 
   const options = {
     mode: "text",
     pythonOptions: ["-u"],
     scriptPath: "./",
-    args: [symptoms],
+    args: [symptomsArg],
   };
 
   PythonShell.run("predict.py", options).then((results) => {
@@ -37,11 +45,6 @@ app.post("/predict", (req, res) => {
     res.render("index", { message: "Prediction failed, please try again." });
   });
 });
-
-app.get("/about", (req, res) => res.render("about"));
-app.get("/contact", (req, res) => res.render("contact"));
-app.get("/developer", (req, res) => res.render("developer"));
-app.get("/blog", (req, res) => res.render("blog"));
 
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");

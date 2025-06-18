@@ -17,12 +17,13 @@
 
     .container {
       background-color: white;
-      max-width: 800px;
+      max-width: 1200px;
       width: 100%;
       padding: 2rem 2.5rem;
       border-radius: 16px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
       animation: fadeIn 0.8s ease-out;
+      text-align: justify;
     }
 
     h1 {
@@ -30,6 +31,14 @@
       margin-bottom: 1.5rem;
       color: #2c3e50;
       font-size: 2rem;
+    }
+
+    .select-head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      text-align: center;
     }
 
     label {
@@ -73,6 +82,19 @@
       background: #2980b9;
     }
 
+    .predict-btn{
+      color: white;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: block;
+      width: 100%;
+    }
+
     .section {
       animation: slideUp 0.6s ease;
       margin-bottom: 2rem;
@@ -110,6 +132,41 @@
       border-radius: 8px;
     }
 
+    .symptom-button {
+      display: inline-block;
+      padding: 6px 10px;
+      margin: 5px;
+      border: 2px solid #007BFF;
+      border-radius: 20px;
+      background-color: white;
+      color: #007BFF;
+      cursor: pointer;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .symptom-button.selected {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .hidden-checkbox {
+      display: none;
+    }
+
+    .back-button{
+      margin: 0 auto;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .back-button a {
+      display: inline-block;
+      color: white;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(10px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -129,3 +186,42 @@
         font-size: 1.5rem;
       }
     }
+
+  .sections-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .section {
+    flex: 1 1 calc(50% - 20px);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-width: 300px;
+  }
+
+  .section h3 {
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+  }
+
+  .section:hover{
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .section ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      flex: 1 1 100%;
+    }
+  }
