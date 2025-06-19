@@ -11,7 +11,7 @@
 <body>
   <div class="container">
     <h1>Disease Prediction System</h1>
-    <% if (!locals.predicted_disease){ %>
+    <% if (!locals.predicted_disease && locals.symptoms){ %>
       <h3 class="select-head">Select your symptoms:</h3>
       <form action="/predict" method="POST">
 
