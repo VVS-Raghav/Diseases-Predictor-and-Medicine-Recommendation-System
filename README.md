@@ -32,7 +32,8 @@ A machine learning-powered web application that predicts diseases based on selec
 
 ---
 
-## 🏗️ Folder Structure
+ ## 🏗️ Folder Structure 
+ ```
 .
 ├── server.js
 ├── package.json
@@ -43,6 +44,34 @@ A machine learning-powered web application that predicts diseases based on selec
 ├── /views
 ├── /public
 └── symptoms.json
+ ``` 
+
+---
+
+
+## 🛠️ Setup & Installation
+
+### 1. Clone the Repository
+
+```
+bash
+git clone https://github.com/VVS-Raghav/Diseases-Predictor-and-Medicine-Recommendation-System
+cd Disease prediction system
+```
+### 2. Install Node.js Dependencies
+Make sure you have Node.js and npm installed.
+```
+bash
+npm install
+```
+
+### 3. Start the Server
+```
+bash
+npm start
+```
+Visit http://localhost:3000 in your browser.
+
 
 ---
 
