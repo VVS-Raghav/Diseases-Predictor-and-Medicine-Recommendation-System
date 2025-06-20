@@ -34,15 +34,15 @@ A machine learning-powered web application that predicts diseases based on selec
 
 ## 🏗️ Folder Structure
 .
-├── server.js # Express.js server
-├── package.json # Node.js project config
-├── predict.py # Python script for disease prediction
-├── Model training.py # ML model training script
-├── /models # Saved ML models
-├── /datasets # Symptom and disease datasets
-├── /views # EJS templates
-├── /public # Static files (CSS, images)
-└── symptoms.json # List of symptom options
+├── server.js
+├── package.json
+├── predict.py
+├── Model training.py
+├── /models
+├── /datasets
+├── /views
+├── /public
+└── symptoms.json
 
 ---
 
@@ -74,7 +74,11 @@ A machine learning-powered web application that predicts diseases based on selec
 
 ## 📷 Screenshots
 
-> 
+![Screenshot 2025-06-20 164807](https://github.com/user-attachments/assets/c09323f7-e2a0-4d49-bdb7-b8b9fb00acc3)
+![Screenshot 2025-06-20 164553](https://github.com/user-attachments/assets/e10373d5-968c-4962-a8e5-443f4f0a6170)
+![Screenshot 2025-06-20 164739](https://github.com/user-attachments/assets/520ba3a7-6a69-45dc-a43d-5567395f7864)
+![Screenshot 2025-06-20 164755](https://github.com/user-attachments/assets/2827ea5f-58e0-4337-afec-b6f017675b07)
+
 
 ---
 
